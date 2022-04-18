@@ -6,7 +6,6 @@ from orders.models import Order, Order_product
 class OrderAdmin(admin.ModelAdmin):
     list_display = (
         'full_name',
-        'email',
         'phone',
         'address',
         'total_sum',
@@ -24,4 +23,4 @@ class OrderProductAdmin(admin.ModelAdmin):
         'quantity',
         'total_price',
         )
-    search_fields = ('product',)
+    list_filter = ('product', 'order__full_name',)

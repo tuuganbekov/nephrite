@@ -1,6 +1,3 @@
-from distutils.command.upload import upload
-from pydoc import describe
-from unicodedata import category
 from django.db import models
 
 from categories.models import Category

@@ -1,4 +1,3 @@
-from unicodedata import category
 from rest_framework import views, response, status
 from products.models import Product
 from products.serializers import ProductSerializer
