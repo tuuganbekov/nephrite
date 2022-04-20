@@ -16,6 +16,10 @@ class Order(models.Model):
     email = models.CharField(max_length=250)
     total_sum = models.DecimalField(default=0, max_digits=6, decimal_places=2)
     delivery = models.IntegerField(choices=DELIVERY_TYPE, default=1)
+    delivered = models.BooleanField(default=False)
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
+    extra_info = models.TextField(null=True, blank=True)
 
     def __str__(self) -> str:
         return f"{self.full_name} - {self.address}"
