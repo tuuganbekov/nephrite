@@ -1,4 +1,6 @@
 from rest_framework import views, response, status
+from django.core.mail import send_mail
+from django.conf import settings
 
 from orders.models import Order, Order_product
 from orders.serializers import OrderSerializer
@@ -39,4 +41,14 @@ class MakeOrderApiView(views.APIView):
             order_product.save()
         order.total_sum = total_sum
         order.save()
-        return response.Response({"message": "Successfully created."}, status=status.HTTP_200_OK)
+        
+        # gmail notification
+        # http_header = request.META
+        send_mail(
+            "Новый заказ",
+            f"От: {order.full_name}\nПочта: {order.email}\nТелефон: {order.phone}\nАдрес: {order.address}",
+            from_email=settings.EMAIL_HOST_USER,
+            recipient_list=[order.email],
+            fail_silently=False,
+        )
+        return response.Response({"message": "Заказ принят."}, status=status.HTTP_200_OK)
