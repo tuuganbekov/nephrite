@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'categories',
     'orders',
     'site_images',
+    'promotions',
 ]
 
 MIDDLEWARE = [
