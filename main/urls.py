@@ -17,10 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from django.conf.urls import url
-from rest_framework_swagger.views import get_swagger_view
-
-schema_view = get_swagger_view(title='Nephrite')
+from .drf_yasg import urlpatterns as swagger_url
 
 
 urlpatterns = [
@@ -30,5 +27,6 @@ urlpatterns = [
     path('api/v1/orders/', include('orders.urls')),
     path('api/v1/site-images/', include('site_images.urls')),
     path('api/v1/promotions/', include('promotions.urls')),
-    url(r'^$', schema_view),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += swagger_url
