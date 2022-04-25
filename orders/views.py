@@ -1,4 +1,4 @@
-from rest_framework import views, response, status
+from rest_framework import views, response, status, parsers
 from django.core.mail import send_mail
 from django.conf import settings
 
@@ -17,6 +17,7 @@ class GetOrdersApiView(views.APIView):
 
 
 class MakeOrderApiView(views.APIView):
+    parser_classes = (parsers.JSONParser)
     
     def post(self, request, *args, **kwargs):
         order_data = request.data
