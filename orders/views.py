@@ -21,7 +21,6 @@ class MakeOrderApiView(views.APIView):
     def post(self, request, *args, **kwargs):
         order_data = request.data
         products = order_data.pop('products')
-        order = Order.objects.create(**order_data)
         total_sum = 0
         for item in products:
             product = Product.objects.get(id=item.get("product"))
@@ -41,7 +40,7 @@ class MakeOrderApiView(views.APIView):
             order_product.save()
             product.quantity -= quantity
             product.save()
-        order.total_sum = total_sum
+        order = Order.objects.create(**order_data, total_sum=total_sum)
         order.save()
         
         # gmail notification
