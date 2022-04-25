@@ -39,6 +39,8 @@ class MakeOrderApiView(views.APIView):
             order_product.total_price = total_price
             total_sum += total_price
             order_product.save()
+            product.quantity -= quantity
+            product.save()
         order.total_sum = total_sum
         order.save()
         

@@ -15,7 +15,7 @@ class Order(models.Model):
     address = models.TextField(null=True, blank=True, verbose_name='Адрес')
     phone = models.TextField(max_length=250, verbose_name='Телефон')
     email = models.CharField(max_length=250, verbose_name='Почта')
-    total_sum = models.DecimalField(default=0, max_digits=6, decimal_places=2, verbose_name='Итоговая стоимость')
+    total_sum = models.PositiveBigIntegerField(verbose_name='Итоговая стоимость')
     delivery = models.IntegerField(choices=DELIVERY_TYPE, default=1, verbose_name='Доставка')
     delivered = models.BooleanField(default=False, verbose_name='Доставлено')
     created_date = models.DateTimeField(auto_now_add=True)
@@ -34,7 +34,7 @@ class Order_product(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Продукт')
     order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='Заявка')
     quantity = models.IntegerField(default=0, verbose_name='Количество')
-    total_price = models.DecimalField(default=0, max_digits=6, decimal_places=2, verbose_name='Сумма')
+    total_price = models.PositiveBigIntegerField(verbose_name='Сумма')
 
     def __str__(self) -> str:
         return f"{self.product} - {self.quantity}"
