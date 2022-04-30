@@ -15,6 +15,19 @@ class ProductList(views.APIView):
         return response.Response(serializer.data, status=status.HTTP_200_OK)
 
 
+class ProductDetail(views.APIView):
+    def get(self, request, pk, format=None):
+        """
+        Return detail of the product
+        """
+        try:
+            queryset = Product.objects.get(id=pk)
+            serializer = ProductSerializer(queryset)
+            return response.Response(serializer.data, status=status.HTTP_200_OK)
+        except Product.DoesNotExist:
+            return response.Response({"message": "Product not found"})
+
+
 class ProductsByCategory(views.APIView):
     
     def get(self, request, pk, format=None):
