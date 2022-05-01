@@ -5,5 +5,5 @@ from products.models import Product
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        exclude = ('quantity', 'is_active', 'category',)
+        exclude = ('is_active',)
         depth = 1

@@ -11,6 +11,9 @@ class ProductList(views.APIView):
         Return a list of all products.
         """
         queryset = Product.objects.all()
+        product = request.query_params.get('title')
+        if product is not None:
+            queryset = queryset.filter(title__icontains=product)
         serializer = ProductSerializer(queryset, many=True)
         return response.Response(serializer.data, status=status.HTTP_200_OK)
 
