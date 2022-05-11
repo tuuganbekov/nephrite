@@ -25,7 +25,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG')
 
-ALLOWED_HOSTS = ['nephrite.herokuapp.com', '127.0.0.1', 'localhost',]
+ALLOWED_HOSTS = ['nephrite.herokuapp.com', '127.0.0.1', 'localhost', 'nephrite-store.herokuapp.com']
 
 
 # Application definition
