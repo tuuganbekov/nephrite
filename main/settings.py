@@ -162,7 +162,7 @@ if not LOCAL_SERVE_STATIC_FILES:
     STATIC_DEFAULT_ACL = 'public-read'
     STATIC_LOCATION = 'static'
     STATIC_URL = f'{AWS_S3_ENDPOINT_URL}/{STATIC_LOCATION}/'
-    STATICFILES_STORAGE = 'example.utils.storage_backends.StaticStorage'
+    STATICFILES_STORAGE = 'utils.storage_backends.StaticStorage'
 
 
 if not LOCAL_SERVE_MEDIA_FILES:
