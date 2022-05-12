@@ -1,5 +1,4 @@
 from django.db import models
-import datetime
 
 from products.models import Product
 
@@ -18,8 +17,8 @@ class Order(models.Model):
     total_sum = models.PositiveBigIntegerField(verbose_name='Итоговая стоимость')
     delivery = models.IntegerField(choices=DELIVERY_TYPE, default=1, verbose_name='Доставка')
     delivered = models.BooleanField(default=False, verbose_name='Доставлено')
-    created_date = models.DateTimeField(auto_now_add=True, default=datetime.datetime.now())
-    updated_date = models.DateTimeField(auto_now=True, default=datetime.datetime.now())
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
     extra_info = models.TextField(null=True, blank=True, verbose_name='Дополнительная информация')
 
     def __str__(self) -> str:
