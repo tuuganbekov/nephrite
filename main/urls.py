@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from .drf_yasg import urlpatterns as swagger_url
 
 
 urlpatterns = [
@@ -26,4 +27,14 @@ urlpatterns = [
     path('api/v1/orders/', include('orders.urls')),
     path('api/v1/site-images/', include('site_images.urls')),
     path('api/v1/promotions/', include('promotions.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] 
+
+urlpatterns += swagger_url
+
+
+if settings.LOCAL_SERVE_STATIC_FILES:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+if settings.LOCAL_SERVE_MEDIA_FILES:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

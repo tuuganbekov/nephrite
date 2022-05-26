@@ -26,3 +26,18 @@ class CategoryList(views.APIView):
             })
         serializer = CategorySerializer(data, many=True)
         return response.Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class CategoryDetailApiView(views.APIView):
+    
+    def get(self, request, pk ,format=None):
+        """
+        Return a category by id.
+        """
+        try:
+            category = Category.objects.get(id=pk)
+            serializer = CategorySerializer(category)
+            return response.Response(serializer.data, status=status.HTTP_200_OK)
+        except Category.DoesNotExist:
+            return response.Response(status=status.HTTP_404_NOT_FOUND)
+            
